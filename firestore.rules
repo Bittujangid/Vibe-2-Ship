@@ -1,0 +1,21 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // User profile rule: Users can only read/write their own profile doc
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      
+      // Task subcollection rule: Users can only CRUD their own tasks
+      match /tasks/{taskId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+    }
+    
+    // Fallback: Default deny all other paths
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Environment files
+.env
+.env.*
+!.env.example
+client/.env
+server/.env
+
+# Build output
+client/dist/
+server/dist/
+build/
+
+# Firebase cache
+.firebase/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+supabase/.temp/
